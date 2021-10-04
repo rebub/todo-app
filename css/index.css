@@ -1,0 +1,246 @@
+/** style.css by sandro santos * * Copyright 2021, sandro santos **/
+
+
+/** font import **/
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
+
+/** variables **/
+:root {
+  --dark: #0c0c0c;
+  --base-dark: #050505;
+  --light: #efefef;
+  --base-light: #fff;
+  --accent-color: #5796ff;
+}
+
+.day {
+    --accent: var(--dark);
+    --overlay: var(--light);
+    --text: var(--base-dark);
+    --background: var(--base-light);
+    --hover-font: var(--base-light);
+    --hover-background: var(--base-dark);
+  }
+  
+  .night {
+    --accent: var(--base-light);
+    --overlay: var(--dark);
+    --text: var(--base-light);
+    --background: var(--base-dark);
+    --hover-font: var(--base-dark);
+    --hover-background: var(--base-light);
+  }
+
+/** general settings **/
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    box-sizing: border-box;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/** body **/
+body {
+    display: flex;
+    min-height: 100vh;
+    max-height: 100vh;
+    color: var(--text);
+    flex-direction: column;
+    background-color: var(--background);
+}
+
+/** header **/
+header {
+    width: 100%;
+    margin: 0 auto;
+
+    max-width: 1024px;
+    padding: 20vh 1em 1em 2em;
+}
+
+header h1 {
+    margin-bottom: .25em;
+    font-size: clamp(1em, 10vw, 3.5em);
+}
+
+#new-task-form {
+    display: flex;
+}
+
+input, button {
+    border: none;
+    outline: none;
+    padding: .5em;
+    appearance: none;
+    color: var(--text);
+    border-radius: 5px;
+    background: var(--overlay);
+}
+
+#new-task-input {
+    flex: 1 1 0%;
+    margin-right: 1em;
+}
+
+#new-task-submit {
+    cursor: pointer;
+    transition: all .3s ease;
+    color: var(--base-light);
+    background-color: var(--accent-color);
+}
+
+#new-task-submit:hover {
+    color: var(--text);
+    background-color: var(--overlay);
+}
+
+
+/** main **/
+
+main {
+    width: 100%;
+    flex: 1 1 0%;
+    margin: 0 auto;
+    padding: 1em 2em;
+    max-width: 1024px;
+}
+
+/** task list **/
+.task-list h2 {
+    margin-bottom: .25em;
+    font-size: clamp(1em, 10vw, 2em);
+}
+
+#tasks .task {
+    padding: 1em;
+    display: flex;
+    margin-bottom: 1em;
+    border-radius: 5px;
+    justify-content: space-between;
+    background-color: var(--overlay);
+}
+
+#tasks .task .content {
+    flex: 1 1 0%;
+}
+
+#tasks .task .content .text {
+    transition: all .3s ease;
+}
+
+#tasks .task .content .text:not(:read-only) {
+    color: var(--accent-color);
+}
+
+#tasks .task .actions {
+    display: flex;
+    margin: 0 -0.5rem;
+}
+
+.task .actions button {
+    cursor: pointer;
+    margin: 0 0.5rem;
+}
+
+.task .actions .edit {
+    transition: all .3s ease;
+}
+
+.task .actions .edit:hover {
+    color: var(--base-light);
+    background-color: var(--accent-color);
+}
+
+.task .actions .delete {
+    color: crimson;
+    transition: all .3s ease;
+}
+
+.task .actions .delete:hover {
+    color: var(--base-light);
+    background-color: crimson;
+}
+
+.task .actions .delete:active {
+    opacity: .2;
+}
+
+#theme-button {
+    top: 92%;
+    right: 2%;
+    gap: 1em;
+    padding: 1rem;
+    display: flex;
+    position: fixed;
+    border-radius: 5px;
+    transition: all .3s ease;
+    background-color: var(--overlay);
+}
+
+input[type='checkbox'] {
+    --active-inner: #fff;
+    --focus: 2px rgba(39, 94, 254, .3);
+    --border: #bbc1e1;
+    --border-hover: #275efe;
+    --background: #fff;
+    --disabled: #f6f8ff;
+    --disabled-inner: #e1e6f9;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    height: 21px;
+    outline: none;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0;
+    cursor: pointer;
+    border: 1px solid var(--bc, var(--border));
+    background: var(--b, var(--background));
+    transition: background 0.3s, border-color 0.3s, box-shadow 0.2s;
+  }
+  
+  input[type='checkbox'].switch {
+    width: 38px;
+    border-radius: 11px;
+  }
+  
+  input[type='checkbox'].switch:after {
+    left: 2px;
+    top: 2px;
+    border-radius: 50%;
+    width: 15px;
+    height: 15px;
+    background: var(--ab, var(--border));
+    transform: translateX(var(--x, 0));
+  }
+  
+  input[type='checkbox'].switch:checked {
+    --ab: var(--active-inner);
+    --x: 17px;
+  }
+  
+  input[type='checkbox'].switch:disabled:not(:checked):after {
+    opacity: 0.6;
+  }
+  
+  input[type='checkbox']:after {
+    content: '';
+    display: block;
+    left: 0;
+    top: 0;
+    position: absolute;
+    transition: transform var(--d-t, 0.3s) var(--d-t-e, ease), opacity var(--d-o, 0.2s);
+  }
+  
+  input[type='checkbox']:checked {
+    --b: var(--accent-color);
+    --bc: var(--accent-color);
+    --d-o: 0.3s;
+    --d-t: 0.6s;
+    --d-t-e: cubic-bezier(0.2, 0.85, 0.32, 1.2);
+  }
+  
+  input[type='checkbox']:hover:not(:checked):not(:disabled) {
+    --bc: var(--border-hover);
+  }
