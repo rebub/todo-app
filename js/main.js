@@ -13,7 +13,6 @@ window.addEventListener ("load" , () => {
 
         // if input is null alert
         if (!task ) {
-            alert("task description needed")
             return
         }
 
@@ -73,3 +72,21 @@ window.addEventListener ("load" , () => {
     })
 
 })
+
+function cursor_update() {
+    const input = document.querySelector("#new-task-input")
+    const task = input.value
+    
+    // if input is null alert
+    if (!task ) {
+        document.getElementById("new-task-submit").disabled = true;
+        document.getElementById("new-task-submit").style.cursor = "no-drop";
+    } else {
+        document.getElementById("new-task-submit").disabled = false;
+        document.getElementById("new-task-submit").style.cursor = "default";
+    }
+
+    requestAnimationFrame(cursor_update);
+}
+
+requestAnimationFrame(cursor_update);
